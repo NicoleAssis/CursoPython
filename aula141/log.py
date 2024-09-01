@@ -20,7 +20,8 @@ class Log:
 class LogFileMixin(Log):
     def _log(self,msg):
         msg_formatada = f'{msg} ({self.__class__.__name__})'
-        with open(LOG_FILE, 'w') as arquivo:
+        print('Salvando no log:', msg_formatada)
+        with open(LOG_FILE, 'a') as arquivo:
             arquivo.write(msg_formatada)
             arquivo.write('\r\n')
        
@@ -31,8 +32,8 @@ class LogPrintMixin(Log):
         
 if __name__ == '__main__':
     lp = LogPrintMixin()
-    lp.log_error('Qualquer Coisa')
-    lp.log_sucess('Que legal')
+    lp.log_error('Error')
+    lp.log_sucess('Sucess')
     lf = LogFileMixin()
     lf.log_error('Qualquer Coisa')
     lf.log_sucess('Que legal')
